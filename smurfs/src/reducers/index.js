@@ -5,7 +5,10 @@
 import {
   GET_PEND,
   GET_SUCCESS,
-  GET_FAIL
+  GET_FAIL,
+  POST_PEND,
+  POST_SUCCESS,
+  POST_FAIL
 } from '../actions';
 
 /*
@@ -58,6 +61,29 @@ export default (state = initialState, action) => {
       return {
         ...state,
         getSmurfs: false,
+        error: action.payload
+      }
+    }
+
+    case POST_PEND: {
+      return {
+        ...state,
+        postSmurfs: true
+      }
+    }
+
+    case POST_SUCCESS: {
+      return {
+        ...state,
+        smurfs: action.payload,
+        postSmurfs: false
+      }
+    }
+
+    case POST_FAIL: {
+      return {
+        ...state,
+        postSmurfs: false,
         error: action.payload
       }
     }

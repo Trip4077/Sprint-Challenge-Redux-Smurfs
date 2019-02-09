@@ -1,9 +1,12 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+import { postSmurf } from '../actions';
+
 class SmurfForm extends React.Component {
   constructor() {
     super();
-    
+
     this.state = {
       name: '',
       height: '',
@@ -15,6 +18,17 @@ class SmurfForm extends React.Component {
     e.preventDefault();
 
     this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handlePost = e => {
+    e.preventDefault();
+
+    this.props.addSmurf(this.state);
+    this.setState({
+      name: '',
+      height: '',
+      age: '',
+    })
   }
 
   render() {
@@ -49,4 +63,4 @@ class SmurfForm extends React.Component {
   }
 }
 
-export default SmurfForm;
+export default connect(null, { postSmurf })(SmurfForm);

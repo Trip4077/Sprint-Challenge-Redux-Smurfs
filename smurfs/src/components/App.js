@@ -34,7 +34,7 @@ class App extends Component {
 
 const mtsp = state => {
   return {
-    ...state
+    smurfs: state.smurfs,
   }
 }
 
