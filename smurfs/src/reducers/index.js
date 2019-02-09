@@ -11,7 +11,10 @@ import {
   POST_FAIL,
   DELETE_PEND,
   DELETE_SUCCESS,
-  DELETE_FAIL
+  DELETE_FAIL,
+  UPDATE_PEND,
+  UPDATE_SUCCESS,
+  UPDATE_FAIL
 } from '../actions';
 
 /*
@@ -110,6 +113,29 @@ export default (state = initialState, action) => {
       return {
         ...state,
         deleteSmurfs: false,
+        err: action.payload
+      }
+    }
+
+    case UPDATE_PEND: {
+      return {
+        ...state,
+        putSmurfs: true
+      }
+    }
+
+    case UPDATE_SUCCESS: {
+      return {
+        ...state,
+        smurfs: action.payload,
+        putSmurfs: false
+      }
+    }
+
+    case UPDATE_FAIL: {
+      return {
+        ...state,
+        putSmurfs: false,
         err: action.payload
       }
     }
