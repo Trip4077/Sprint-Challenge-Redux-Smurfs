@@ -23,12 +23,12 @@ class SmurfForm extends React.Component {
   handlePost = e => {
     e.preventDefault();
 
-    this.props.addSmurf(this.state);
+    this.props.postSmurf(this.state);
     this.setState({
       name: '',
       height: '',
       age: '',
-    })
+    });
   }
 
   render() {
@@ -56,7 +56,7 @@ class SmurfForm extends React.Component {
         </div>
 
         <div>
-         <button>Add Smurf</button>
+         <button onClick={this.handlePost}>Add Smurf</button>
         </div>
       </form>
     );
