@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SmurfForm from './SmurfForm';
+import Smurf from './Smurf';
 
 import { connect } from 'react-redux';
 import { getSmurfs } from '../actions';
@@ -26,7 +27,10 @@ class App extends Component {
 
         <SmurfForm />
 
-        {this.props.smurfs[0] ? this.props.smurfs.map( smurf => <h1 key={smurf.height}>{smurf.name}</h1>) : null}
+        {this.props.smurfs[0] ? this.props.smurfs.map( (smurf, index) => <Smurf smurf={smurf}
+                                                                                key={index}
+                                                                                />)
+                                                                                : null}
       </div>
     );
   }
