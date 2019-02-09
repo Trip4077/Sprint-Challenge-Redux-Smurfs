@@ -60,7 +60,7 @@ class SmurfForm extends React.Component {
   render() {
     return(
       <form>
-        <div>
+        <div className='input--box'>
           <input type='text'
                  name='name'
                  placeholder='Name'
@@ -87,9 +87,9 @@ class SmurfForm extends React.Component {
                  />
         </div>
 
-        <div>
-         <button onClick={this.handlePost}>Add Smurf</button>
-         <button onClick={this.handleUpdate}>Update Smurf</button>
+        <div className='btn--box'>
+         <button onClick={this.handlePost}><span>Add Smurf</span></button>
+         <button onClick={this.handleUpdate}><span>Update Smurf</span></button>
         </div>
       </form>
     );
