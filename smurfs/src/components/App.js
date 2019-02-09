@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import SmurfForm from './SmurfForm';
+
 import { connect } from 'react-redux';
 import { getSmurfs } from '../actions';
 
@@ -21,6 +23,8 @@ class App extends Component {
         <div>Welcome to your Redux version of Smurfs!</div>
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
+
+        <SmurfForm />
 
         {this.props.smurfs[0] ? this.props.smurfs.map( smurf => <h1 key={smurf.height}>{smurf.name}</h1>) : null}
       </div>

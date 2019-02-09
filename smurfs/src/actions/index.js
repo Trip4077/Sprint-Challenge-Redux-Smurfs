@@ -7,6 +7,10 @@ export const GET_PEND = 'GET_PEND';
 export const GET_SUCCESS = 'GET_SUCCESS';
 export const GET_FAIL = 'GET_FAIL';
 
+export const POST_PEND = 'POST_PEND';
+export const POST_SUCCESS = 'POST_SUCCESS';
+export const POST_FAIL = 'POST_FAIL';
+
 /*
   For this project you'll need at least 2 action creators for the main portion,
    and 2 more for the stretch problem.
@@ -27,5 +31,17 @@ export const getSmurfs = () => dispatch => {
     )
     .catch(err =>
       dispatch({ type: GET_FAIL, payload: err })
+    );
+}
+
+export const postSmurf = smurf => dispatch => {
+  dispatch({ type: POST_PEND });
+
+  axios.post('http://localhost:3333/smurfs', smurf)
+    .then(res =>
+      dispatch({ type: POST_SUCCESS, payload: res.data })
+    )
+    .catch(err =>
+      dispatch({ type: POST_FAIL, payload: err })
     );
 }
