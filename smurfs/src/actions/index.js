@@ -11,6 +11,10 @@ export const POST_PEND = 'POST_PEND';
 export const POST_SUCCESS = 'POST_SUCCESS';
 export const POST_FAIL = 'POST_FAIL';
 
+export const DELETE_PEND = "DELETE_PEND";
+export const DELETE_SUCCESS = "DELETE_SUCCESS";
+export const DELETE_FAIL = "DELETE_FAIL";
+
 /*
   For this project you'll need at least 2 action creators for the main portion,
    and 2 more for the stretch problem.
@@ -43,5 +47,17 @@ export const postSmurf = smurf => dispatch => {
     )
     .catch(err =>
       dispatch({ type: POST_FAIL, payload: err })
+    );
+}
+
+export const deleteSmurf = id => dispatch => {
+  dispatch({ type: DELETE_PEND })
+
+  axios.delete(`http://localhost:3333/smurfs/${id}`)
+    .then(res =>
+      dispatch({ type: DELETE_SUCCESS, payload: res.data })
+    )
+    .catch(err =>
+      dispatch({ type: DELETE_FAIL, payload: err })
     );
 }
