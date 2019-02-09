@@ -15,6 +15,7 @@ const Smurf = props => {
       <h1>{props.smurf.name}</h1>
       <h2>{props.smurf.age}</h2>
       <h3>{props.smurf.height}</h3>
+      <h3>ID: {props.smurf.id}</h3>
       <h4 onClick={handleDelete}>&times;</h4>
     </div>
   );

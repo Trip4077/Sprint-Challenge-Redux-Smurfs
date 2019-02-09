@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { postSmurf } from '../actions';
+import { postSmurf, updateSmurf } from '../actions';
 
 class SmurfForm extends React.Component {
   constructor() {
@@ -12,6 +12,20 @@ class SmurfForm extends React.Component {
       height: '',
       age: '',
       id: ''
+    }
+  }
+
+  generateSmurf = smurf => {
+    const name = this.state.name || smurf.name;
+    const height = this.state.height || smurf.height;
+    const age = this.state.age || smurf.age;
+    const id = smurf.id;
+
+    return {
+      name: name,
+      height: height,
+      age: age,
+      id: id
     }
   }
 
@@ -30,6 +44,17 @@ class SmurfForm extends React.Component {
       height: '',
       age: '',
     });
+  }
+
+  handleUpdate = e => {
+    e.preventDefault();
+
+    const id = this.state.id
+    const smurf = this.props.smurfs.filter(smurf => Number(smurf.id) === Number(id) )[0];
+
+    const newSmurf = this.generateSmurf(smurf)
+
+    this.props.updateSmurf(newSmurf, id)
   }
 
   render() {
@@ -64,7 +89,7 @@ class SmurfForm extends React.Component {
 
         <div>
          <button onClick={this.handlePost}>Add Smurf</button>
-         <button>Update Smurf</button>
+         <button onClick={this.handleUpdate}>Update Smurf</button>
         </div>
       </form>
     );
@@ -72,10 +97,9 @@ class SmurfForm extends React.Component {
 }
 
 const mstp = state => {
-  console.log(state)
   return {
     smurfs: state.smurfs,
   }
 }
 
-export default connect(mstp, { postSmurf })(SmurfForm);
+export default connect(mstp, { postSmurf, updateSmurf })(SmurfForm);
