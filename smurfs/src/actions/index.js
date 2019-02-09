@@ -15,6 +15,10 @@ export const DELETE_PEND = "DELETE_PEND";
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const DELETE_FAIL = "DELETE_FAIL";
 
+export const UPDATE_PEND = 'UPDATE_PEND';
+export const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
+export const UPDATE_FAIL = 'UPDATE_FAIL';
+
 /*
   For this project you'll need at least 2 action creators for the main portion,
    and 2 more for the stretch problem.
@@ -59,5 +63,17 @@ export const deleteSmurf = id => dispatch => {
     )
     .catch(err =>
       dispatch({ type: DELETE_FAIL, payload: err })
+    );
+}
+
+export const updateSmurf = (smurf, id) => dispatch => {
+  dispatch({ type: UPDATE_PEND })
+
+  axios.put(`http://localhost:3333/smurfs/${id}`, smurf)
+    .then(res =>
+      dispatch({ type: UPDATE_SUCCESS, payload: res.data })
+    )
+    .catch(err =>
+      dispatch({ type: UPDATE_FAIL, payload: err })
     );
 }

@@ -8,7 +8,10 @@ import {
   GET_FAIL,
   POST_PEND,
   POST_SUCCESS,
-  POST_FAIL
+  POST_FAIL,
+  DELETE_PEND,
+  DELETE_SUCCESS,
+  DELETE_FAIL
 } from '../actions';
 
 /*
@@ -28,7 +31,7 @@ const initialState = {
   getSmurfsActive: false,
   postSmurfs: false,
   putSmurfs: false,
-  deleteSmurg: false,
+  deleteSmurfs: false,
   error: ''
 }
 
@@ -85,6 +88,29 @@ export default (state = initialState, action) => {
         ...state,
         postSmurfs: false,
         error: action.payload
+      }
+    }
+
+    case DELETE_PEND: {
+      return {
+        ...state,
+        deleteSmurfs: true
+      }
+    }
+
+    case DELETE_SUCCESS: {
+      return {
+        ...state,
+        smurfs: action.payload,
+        deleteSmurfs: false
+      }
+    }
+
+    case DELETE_FAIL: {
+      return {
+        ...state,
+        deleteSmurfs: false,
+        err: action.payload
       }
     }
 

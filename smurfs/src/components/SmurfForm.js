@@ -10,7 +10,8 @@ class SmurfForm extends React.Component {
     this.state = {
       name: '',
       height: '',
-      age: ''
+      age: '',
+      id: ''
     }
   }
 
@@ -53,14 +54,28 @@ class SmurfForm extends React.Component {
                  onChange={this.handleChange}
                  value={this.state.height}
                  />
+          <input type='text'
+                 name='id'
+                 placeholder='ID for update: 0, 1, 2, ....'
+                 onChange={this.handleChange}
+                 value={this.state.id}
+                 />
         </div>
 
         <div>
          <button onClick={this.handlePost}>Add Smurf</button>
+         <button>Update Smurf</button>
         </div>
       </form>
     );
   }
 }
 
-export default connect(null, { postSmurf })(SmurfForm);
+const mstp = state => {
+  console.log(state)
+  return {
+    smurfs: state.smurfs,
+  }
+}
+
+export default connect(mstp, { postSmurf })(SmurfForm);
