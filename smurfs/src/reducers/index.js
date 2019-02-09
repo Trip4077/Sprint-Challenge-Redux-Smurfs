@@ -22,7 +22,7 @@ import {
 
 const initialState = {
   smurfs: [],
-  getSmurfs: false,
+  getSmurfsActive: false,
   postSmurfs: false,
   putSmurfs: false,
   deleteSmurg: false,
@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
     case GET_PEND: {
       return {
         ...state,
-        getSmurfs: true
+        getSmurfsActive: true
       }
     }
 
@@ -50,7 +50,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         smurfs: action.payload,
-        getSmurfs: false
+        getSmurfsActive: false
       }
     }
 
