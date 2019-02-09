@@ -22,6 +22,10 @@ export const getSmurfs = () => dispatch => {
   dispatch({ type: GET_PEND });
 
   axios.get('http://localhost:3333/smurfs')
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err));
+    .then(res =>
+      dispatch({ type: GET_SUCCESS, payload: res.data })
+    )
+    .catch(err =>
+      dispatch({ type: GET_FAIL, payload: err })
+    );
 }
